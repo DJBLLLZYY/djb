@@ -1,0 +1,4 @@
+﻿  5.24.c
+C:\Users\86177\Desktop\c_language\djb\2026.5.24\2026.5.24\5.24.c(185,12): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“int”
+C:\Users\86177\Desktop\c_language\djb\2026.5.24\2026.5.24\5.24.c(185,12): warning C4313: "printf": 格式字符串中的 "%p" 与类型为 "int" 的参数 1 冲突
+  2026.5.24.vcxproj -> C:\Users\86177\Desktop\c_language\djb\2026.5.24\x64\Debug\2026.5.24.exe

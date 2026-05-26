@@ -1,0 +1,7 @@
+﻿  5.20.c
+C:\Users\86177\Desktop\c_language\djb\2026.5.20\2026.5.20\5.20.c(12,9): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 9 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  2026.5.20.vcxproj -> C:\Users\86177\Desktop\c_language\djb\2026.5.20\x64\Release\2026.5.20.exe
