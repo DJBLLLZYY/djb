@@ -24,3 +24,178 @@
 	//关闭文件
 	int fclose (FILE * stream);
 */
+/*
+	文件的使用方式  |              含义                                 |   如果指定文件不存在
+		"r"(只读)   |   为了输入数据，打开一个已经存在的文本文件		|   出错
+		"w"(只写)   |   为了输入数据，打开一个文本文件					|   建立一个新文件
+		"a"(追加)   |   想文本文件尾添加数据							|   建立一个新文件
+		"rb"(只读)  |   为了输入数据，打开一个二进制文件				|   出错
+		"wb"(只写)  |   为了输入数据，打开一个二进制文件				|   建立一个新文件
+		"ab"(追加)  |   向一个二进制文件尾添加数据						|   出错
+		"r+"(读写)  |   为了读和写，打开一个文本文件					|   出错
+		"w+"(读写)  |   为了读和写，新建一个新的文件					|   建立一个新文件
+		"a+"(读写)  |   打开一个文件，在文件尾进行读写					|   建立一个新文件
+		"rb+"(读写) |   为了读和写打开一个二进制文件					|   出错
+		"wb+"(读写) |   为了读和写，新建一个新的二进制文件				|   建立一个新文件
+		"rb+"(读写) |   为了读和写打开一个二进制文件					|   建立一个新文件
+		"wb+"(读写) |   为了读和写打开一个二进制文件					|   出错
+		"ab+"(读写) |   为了读和写，新建一个新的二进制文件				|   建立一个新文件
+		"r"(只读)   |   打开一个二进制文件，在文件尾进行读和写			|   建立一个新文件
+*/
+/*		功能		|	函数名			|	适用于
+* 字符输入函数		|fgetc				|所有输入流
+* 字符输出函数		|fputc				|所有输出流
+* 文本行输入函数	|fgets				|所有输入流
+* 文本行输出函数	|fputs				|所有输出流
+* 格式化输入函数	|fscanf				|所有输入流
+* 格式化输出函数	|fprintf			|所有输出流
+* 二进制输入		|fread				|文件
+* 二进制输出		|fwrite				|文件
+* 
+*/
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+
+//int main()
+//{
+//	FILE* pf = fopen("test.txt", "w");
+//	//写文件时，当源文件有内容时，会先销毁原来的全部内容再写，如果不想销毁，应该追加
+//	if (pf == NULL)
+//	{
+//		printf("%s\n", strerror(errno));
+//		return 1;
+//	}
+//	//写文件
+//	fputc('a', pf);
+//	//关闭文件
+//	fclose(pf);
+//	return 0;
+//}
+//int main()
+//{
+//	FILE* pf = fopen("test.txt", "r");
+//	
+//	if (pf == NULL)
+//	{
+//		printf("%s\n", strerror(errno));
+//		return 1;
+//	}
+//	//读文件
+//	char arr[20];
+//
+//	fgets(arr,20,pf);
+//	printf("%s\n", arr);
+//	//关闭文件
+//	fclose(pf);
+//	return 0;
+//}
+
+typedef struct 
+{
+	char arr[10];
+	int age;
+	float score;
+}stu;
+//格式化输出
+//int main()
+//{
+//	stu s = { "zhangsan",25,90.1f };
+//	FILE* pf = fopen("text.txt", "w");
+//	if (pf == NULL)
+//	{
+//		perror("fopen");
+//		return 1;
+//
+//	}
+//	fprintf(pf,"%s %d %f",s.arr,s.age,s.score);
+//	fclose(pf);
+//	pf == NULL;
+//
+//	return 0;
+//}
+
+//格式化输入
+//int main()
+//{
+//	stu s = { 0 };
+//	FILE* pf = fopen("text.txt", "r");
+//	if (pf == NULL)
+//	{
+//		perror("fopen");
+//		return 1;
+//
+//	}
+//	fscanf(pf, "%s %d %f", &(s.arr), &(s.age), &(s.score));
+//	printf("%s %d %f\n", s.arr, s.age, s.score);
+//	fclose(pf);
+//	pf = NULL;
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	stu s1 = { "zhangsan",25,50.5f };
+//	stu s2 = {0};
+//	//以二进制的形式写到文件中
+//	FILE* pf1 = fopen("text.txt", "wb");
+//	if (pf1 == NULL)
+//	{
+//		perror("fopen");
+//		return 1;
+//	}
+//	//二进制的方式写
+//	fwrite(&s1, sizeof(stu), 1, pf1);
+//	fclose(pf1);
+//	pf1 = NULL;
+//
+//	//以二进制的形式读
+//	FILE* pf2 = fopen("text.txt", "rb");
+//	if (pf2 == NULL)
+//	{
+//		perror("fopen");
+//		return 1;
+//	}
+//	fread(&s2, sizeof(stu), 1, pf2);
+//	printf("%s %d %.2f", s2.arr, s2.age, s2.score);
+//	fclose(pf2);
+//	pf2 = NULL;
+//	return 0;
+//}
+
+int main()
+{
+	stu s = { "zhangsan",20,55.5f };
+	stu tmp = { 0 };
+	char buf[100] = { 0 };
+	//把结构体内的成员转换成字符串
+	//sprintf是把格式化的数据转换成字符串
+	//sscanf 从一个字符串中转化出一个格式化的数据
+	sprintf(buf, "%s %d %f", s.arr, s.age, s.score);
+	printf("%s\n", buf);
+	//从字符串buf中获取一个格式化的数据到tmp中
+	sscanf(buf, "%s %d %f", tmp.arr, &(tmp.age), &(tmp.score));
+	printf("%s %d %f", tmp.arr,tmp.age,tmp.score);
+	return 0;
+}
+
+//文件随机读写
+//int fseek(FILE* stream,long int offset,int origin);
+//根据文件指针的位置和偏移量来定位文件指针
+//void remind(FILE*stream);
+//让文件指针的位置回到文件的起始位置
+
+/*                
+					文件读取结束的判定
+	在文件读取的过程中不能用feof函数的返回值直接用来判断文件是否结束
+	而是应用于当文件读取结束的时候，判断是读取失败还是遇到文件尾结束
+	1.文本文件读取是否结束，判断返回值是否为EOF（fgetc）或者NULL（fgets）
+	例如：
+		fgetc判断是否为EOF
+		fgets判断返回值是否为NULL
+	2.二进制文件的读取结束判断，判断返回值是否小于实际要读的个数
+	例如：
+		fread判断返回值是否小于实际要读的个数
+*/
